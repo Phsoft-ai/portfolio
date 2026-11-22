@@ -121,6 +121,69 @@ img {
 }
 
 /* ==========================================================================
+   Page Transitions (Snappy & Smooth)
+   ========================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vt-fade-out 0.14s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.container > *,
+.site-footer {
+  animation: page-enter 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.container > *:nth-child(2) {
+  animation-delay: 0.035s;
+}
+
+.container > *:nth-child(3) {
+  animation-delay: 0.07s;
+}
+
+.container > *:nth-child(n + 4),
+.site-footer {
+  animation-delay: 0.105s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  .container > *,
+  .site-footer {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
    Main Container
    ========================================================================== */
 .container {
