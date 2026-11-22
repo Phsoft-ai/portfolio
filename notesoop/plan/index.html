@@ -30,151 +30,192 @@
       <div class="subpage-header__eyebrow">NoteSoop · 01</div>
       <h1 class="subpage-header__title">Plan</h1>
       <p class="subpage-header__summary">
-        폴더 · 과목 · 주차 구조, 핵심 학습 루프, 구독·원가 전략.
+        대학생의 한 학기를 그대로 옮긴 구조 위에, 수업부터 시험까지 끊기지 않는 흐름을 설계했습니다.
       </p>
     </header>
 
     <section class="section">
-      <h2 class="section__heading">Core System.</h2>
+      <h2 class="section__heading">Structure.</h2>
       <p class="section__lead">
-        <strong>폴더 → 과목 → 주차 → PDF·필기·녹음</strong> 구조 위에 수강부터 복습까지 한 흐름으로 연결했습니다.
+        대학 수업은 <strong>학기 → 과목 → 주차</strong>로 흘러갑니다. 앱의 구조도 똑같이 만들었습니다.
       </p>
+      <div class="flow-steps" aria-label="노트숲 자료 구조">
+        <div class="flow-step">
+          <span class="flow-step__num">Folder</span>
+          <span class="flow-step__title">폴더</span>
+          <span class="flow-step__desc">2026년 2학기, 자격증 준비</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">Subject</span>
+          <span class="flow-step__title">과목</span>
+          <span class="flow-step__desc">알고리즘, 인공지능 개론</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">Week</span>
+          <span class="flow-step__title">주차</span>
+          <span class="flow-step__desc">1주차, 2주차 … 자동 생성</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">Material</span>
+          <span class="flow-step__title">학습 자료</span>
+          <span class="flow-step__desc">📄 PDF · 📝 필기 · 🎙️ 녹음</span>
+        </div>
+      </div>
+    </section>
 
+    <section class="section">
+      <h2 class="section__heading">User Scenario.</h2>
+      <p class="section__lead">한 과목을 수강하는 대학생의 일주일을 따라 기능을 배치했습니다.</p>
+      <div class="spec-grid spec-grid--4">
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">수업 전</span>
+          <h3 class="spec-card__title">자료 올리기</h3>
+          <p class="spec-card__body">이번 주차에 강의안 PDF를 추가해요.</p>
+        </article>
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">수업 중</span>
+          <h3 class="spec-card__title">필기 + 녹음</h3>
+          <p class="spec-card__body">PDF 위에 메모하며 교수님 설명을 녹음해요.</p>
+        </article>
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">수업 후</span>
+          <h3 class="spec-card__title">받아쓰기 + 요약</h3>
+          <p class="spec-card__body">녹음을 글로 바꾸고 AI 요약으로 핵심만 봐요.</p>
+        </article>
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">시험 전</span>
+          <h3 class="spec-card__title">점검 + 오답</h3>
+          <p class="spec-card__body">퀴즈 · 모의고사를 풀고, 틀린 문제는 다시 들어요.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">AI Study Tools.</h2>
+      <p class="section__lead">
+        자료를 한 번만 고르면 네 가지 복습 도구를 바로 만들 수 있게 했습니다.
+      </p>
       <div class="spec-grid">
         <article class="spec-card">
-          <span class="spec-card__eyebrow">01 Workspace</span>
-          <h3 class="spec-card__title">필기 · 녹음 동기화</h3>
-          <p class="spec-card__body">PDF 손글씨와 녹음을 연동해 재생 시 당시 필기 획을 그대로 재현.</p>
+          <span class="spec-card__eyebrow">Summary</span>
+          <h3 class="spec-card__title">AI 요약</h3>
+          <p class="spec-card__body">핵심 개념, 예상 출제 포인트, 암기 단어장을 한 장으로.</p>
         </article>
-
         <article class="spec-card">
-          <span class="spec-card__eyebrow">02 Audio</span>
-          <h3 class="spec-card__title">하이브리드 STT</h3>
-          <p class="spec-card__body">서버(Gemini) + 온디바이스(Conformer-CTC). 로컬 전사 환각 0% · 무제한.</p>
+          <span class="spec-card__eyebrow">Quiz</span>
+          <h3 class="spec-card__title">복습 퀴즈</h3>
+          <p class="spec-card__body">객관식 문제로 오늘 배운 내용을 바로 점검.</p>
         </article>
-
         <article class="spec-card">
-          <span class="spec-card__eyebrow">03 AI Study</span>
-          <h3 class="spec-card__title">통합 소스 AI 복습</h3>
-          <p class="spec-card__body">요약 · 퀴즈 · 기출 모의고사(오답노트) · 온디바이스 TTS 슬라이드 강의.</p>
+          <span class="spec-card__eyebrow">Mock Exam</span>
+          <h3 class="spec-card__title">AI 모의고사</h3>
+          <p class="spec-card__body">기출(족보)과 원하는 유형을 반영해 출제. 틀린 문제는 오답노트로.</p>
         </article>
-
         <article class="spec-card">
-          <span class="spec-card__eyebrow">04 Sync</span>
-          <h3 class="spec-card__title">동기화 안전망</h3>
-          <p class="spec-card__body">MD5 3-way 병합, 미업로드 캐시 보호, 휴지통 및 즉각 완전 파기.</p>
+          <span class="spec-card__eyebrow">Lecture</span>
+          <h3 class="spec-card__title">AI 슬라이드 강의</h3>
+          <p class="spec-card__body">슬라이드와 대본을 만들어 AI 성우가 읽어주는 나만의 강의.</p>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section__heading">Subscription &amp; Economics.</h2>
-      <div class="table-wrap">
-        <table class="editorial-table editorial-table--auto">
-          <thead>
-            <tr>
-              <th>플랜</th>
-              <th>월 가격</th>
-              <th>AI 생성 (요약·문제·강의)</th>
-              <th>서버 STT</th>
-              <th>동기화</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="플랜"><strong>Free</strong></td>
-              <td data-label="월 가격">무료</td>
-              <td data-label="AI 생성">10 · 5 · 5회</td>
-              <td data-label="서버 STT">180분</td>
-              <td data-label="동기화">—</td>
-            </tr>
-            <tr>
-              <td data-label="플랜"><strong>Plus</strong></td>
-              <td data-label="월 가격">4,900원</td>
-              <td data-label="AI 생성">20 · 20 · 20회</td>
-              <td data-label="서버 STT">600분</td>
-              <td data-label="동기화">—</td>
-            </tr>
-            <tr class="is-highlight">
-              <td data-label="플랜"><strong>Pro</strong></td>
-              <td data-label="월 가격">11,900원</td>
-              <td data-label="AI 생성">30 · 30 · 40회</td>
-              <td data-label="서버 STT">1,200분</td>
-              <td data-label="동기화">전체</td>
-            </tr>
-            <tr>
-              <td data-label="플랜"><strong>Max</strong></td>
-              <td data-label="월 가격">20,900원</td>
-              <td data-label="AI 생성">무제한</td>
-              <td data-label="서버 STT">무제한</td>
-              <td data-label="동기화">전체</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 class="section__heading">Pricing.</h2>
+      <p class="section__lead">
+        가격에 민감한 대학생을 위해, 무료로 충분히 써보고 필요한 만큼 올라갈 수 있게 설계했습니다.
+      </p>
+      <div class="plan-grid">
+        <article class="plan-card">
+          <span class="plan-card__name">Free</span>
+          <span class="plan-card__price">0원</span>
+          <p class="plan-card__for">가볍게 시작해보는 학생</p>
+          <ul class="plan-card__list">
+            <li>AI 요약 월 10회</li>
+            <li>모의고사 · AI 강의 월 5회</li>
+            <li>서버 받아쓰기 3시간</li>
+          </ul>
+        </article>
+        <article class="plan-card">
+          <span class="plan-card__name">Plus</span>
+          <span class="plan-card__price">4,900원<small>/월</small></span>
+          <p class="plan-card__for">매주 복습하는 학생</p>
+          <ul class="plan-card__list">
+            <li>AI 요약 · 모의고사 · 강의 월 20회</li>
+            <li>서버 받아쓰기 10시간</li>
+          </ul>
+        </article>
+        <article class="plan-card plan-card--focus">
+          <span class="plan-card__name">Pro</span>
+          <span class="plan-card__price">11,900원<small>/월</small></span>
+          <p class="plan-card__for">패드와 폰을 함께 쓰는 학생</p>
+          <ul class="plan-card__list">
+            <li>AI 요약 · 모의고사 월 30회</li>
+            <li>AI 강의 월 40회</li>
+            <li>서버 받아쓰기 20시간</li>
+            <li>기기 간 동기화</li>
+          </ul>
+        </article>
+        <article class="plan-card">
+          <span class="plan-card__name">Max</span>
+          <span class="plan-card__price">20,900원<small>/월</small></span>
+          <p class="plan-card__for">시험 기간을 제대로 달리는 학생</p>
+          <ul class="plan-card__list">
+            <li>모든 기능 사실상 무제한</li>
+            <li>기기 간 동기화</li>
+          </ul>
+        </article>
+      </div>
+      <p class="table-note">※ 기기 안에서 하는 받아쓰기는 모든 플랜에서 무료 · 무제한입니다.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Insight.</h2>
+      <p class="section__lead">출시 후, 가격을 내렸는데도 유료 전환이 늘지 않았습니다. 숫자를 다시 들여다봤습니다.</p>
+      <div class="spec-grid spec-grid--3">
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">관찰</span>
+          <h3 class="spec-card__title">무료 한도도 다 쓰지 않았다</h3>
+          <p class="spec-card__body">가입은 꾸준한데, Free 사용자조차 월 한도를 남기고 있었습니다.</p>
+        </article>
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">진단</span>
+          <h3 class="spec-card__title">문제는 가격이 아니라 경험</h3>
+          <p class="spec-card__body">기능이 주는 효용을 아직 충분히 느껴보지 못한 상태였습니다.</p>
+        </article>
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">다음 단계</span>
+          <h3 class="spec-card__title">첫 경험을 설계한다</h3>
+          <p class="spec-card__body">온보딩에서 AI 결과를 바로 체험하게 하고, 기능별 사용률을 추적합니다.</p>
+        </article>
       </div>
       <p class="table-note">
-        ※ 온디바이스 STT 전 플랜 무제한 · 2027년 API 정가 전환 시 Plus 최대 원가(₩4,602) > 실수령액(₩3,430) 리스크 진단
+        ※ AI 원가가 오르면 Plus는 많이 쓸수록 손해가 나는 구조라는 것도 확인했습니다. 그래서 플랜별 한도는 앱 업데이트 없이 원격으로 조정할 수 있게 설계했습니다.
       </p>
     </section>
 
     <section class="section">
-      <h2 class="section__heading">Challenge &amp; Solution.</h2>
-      <div class="table-wrap">
-        <table class="editorial-table">
-          <thead>
-            <tr>
-              <th class="col-no">No.</th>
-              <th>Challenge</th>
-              <th>Solution</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-no" data-label="No.">01</td>
-              <td data-label="Challenge">다중 기기 충돌·캐시 유실 위험</td>
-              <td data-label="Solution">MD5 3-way 병합 + Dirty Queue + 휴지통</td>
-              <td data-label="Result">오프라인·멀티 기기 무결성 확보</td>
-            </tr>
-            <tr>
-              <td class="col-no" data-label="No.">02</td>
-              <td data-label="Challenge">STT·TTS API 원가 및 발열</td>
-              <td data-label="Solution">20초 청크 로컬 STT + 쿨다운 로컬 TTS</td>
-              <td data-label="Result">STT 원가 0원 · 로컬 프라이버시</td>
-            </tr>
-            <tr>
-              <td class="col-no" data-label="No.">03</td>
-              <td data-label="Challenge">유료 전환 저조 · Plus 적자 리스크</td>
-              <td data-label="Solution">원가 역전 진단 &amp; Free 미소진 원인 분석</td>
-              <td data-label="Result">온보딩 체험·소진율 트래킹 수립</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 class="section__heading">Privacy.</h2>
+      <div class="spec-grid spec-grid--3">
+        <article class="spec-card">
+          <h3 class="spec-card__title">기기 안에서 처리</h3>
+          <p class="spec-card__body">받아쓰기와 AI 강의 음성은 휴대폰 안에서 만들어져요.</p>
+        </article>
+        <article class="spec-card">
+          <h3 class="spec-card__title">학습에 쓰지 않아요</h3>
+          <p class="spec-card__body">내 자료는 결과를 만드는 데만 쓰이고 AI 학습에 쓰이지 않아요.</p>
+        </article>
+        <article class="spec-card">
+          <h3 class="spec-card__title">탈퇴하면 바로 삭제</h3>
+          <p class="spec-card__body">클라우드의 파일과 계정 정보가 즉시 영구 삭제돼요.</p>
+        </article>
       </div>
     </section>
 
     <section class="section">
       <h2 class="section__heading">Lessons Learned.</h2>
-      <div class="table-wrap">
-        <table class="editorial-table">
-          <thead>
-            <tr>
-              <th class="col-no">No.</th>
-              <th>내용</th>
-              <th class="col-mood">경험</th>
-              <th>배운 점</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-no" data-label="No.">01</td>
-              <td data-label="내용">가격 인하 후 사용량·원가 분석</td>
-              <td class="col-mood" data-label="경험">💡</td>
-              <td class="text-left" data-label="배운 점">Free 한도 미소진은 가격보다 첫 경험의 가치 체감 문제. 원가 구조와 온보딩은 함께 설계해야 함.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <blockquote class="quote-block">
+        사용자가 한도를 남기는 건 가격보다 첫 경험의 문제였습니다. 기능을 만드는 것만큼, 그 가치를 처음 느끼게 하는 설계가 중요하다는 걸 배웠습니다.
+      </blockquote>
     </section>
 
     <nav class="page-nav" aria-label="세부 작업 이동">

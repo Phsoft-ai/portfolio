@@ -1164,6 +1164,10 @@ a.profile-meta__value:hover {
   align-items: center;
 }
 
+.feature-row--reverse {
+  grid-template-columns: 1fr 1.1fr;
+}
+
 .feature-row--reverse .feature-row__media {
   order: 2;
 }
@@ -1330,7 +1334,7 @@ a.profile-meta__value:hover {
 
 .bar-row {
   display: grid;
-  grid-template-columns: 112px 1fr 72px;
+  grid-template-columns: 128px 1fr 72px;
   align-items: center;
   gap: 12px;
   font-size: 0.84375rem;
@@ -1721,8 +1725,17 @@ a.profile-meta__value:hover {
   }
 
   .bar-row {
-    grid-template-columns: 96px 1fr 60px;
-    gap: 10px;
+    grid-template-columns: 1fr auto;
+    gap: 6px 10px;
+  }
+
+  .bar-row__track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .project-hero__meta-sep {
+    display: none;
   }
 
   .stat-cell {

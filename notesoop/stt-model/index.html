@@ -30,7 +30,7 @@
       <div class="subpage-header__eyebrow">NoteSoop · 03</div>
       <h1 class="subpage-header__title">STT Model</h1>
       <p class="subpage-header__summary">
-        <strong>Notesoop-STT-Ko-v2</strong> — 530GB 코퍼스로 학습한 Apache-2.0 한국어 온디바이스 ASR.
+        강의 녹음을 인터넷 없이, 휴대폰 안에서, 무료로 글로 바꾸기 위해 한국어 받아쓰기 모델 <strong>Notesoop-STT-Ko-v2</strong>를 직접 학습했습니다.
       </p>
       <div class="link-bar link-bar--left">
         <a class="link-pill" href="https://huggingface.co/Phsoft-ai/Notesoop-STT-Ko-v2" target="_blank" rel="noopener">Hugging Face <span class="link-pill__arrow" aria-hidden="true">↗</span></a>
@@ -40,75 +40,99 @@
     <section class="section section--tight" aria-label="STT 핵심 성과">
       <div class="stat-strip">
         <div class="stat-cell">
-          <span class="stat-cell__value">42.2x</span>
-          <span class="stat-cell__label">41분 강의 59.3초</span>
+          <span class="stat-cell__value">59초</span>
+          <span class="stat-cell__label">41분 강의를 받아쓰는 시간</span>
         </div>
         <div class="stat-cell">
-          <span class="stat-cell__value">10.47%</span>
-          <span class="stat-cell__label">Zeroth CER</span>
+          <span class="stat-cell__value">12배</span>
+          <span class="stat-cell__label">Whisper-large-v3보다 빠르게</span>
         </div>
         <div class="stat-cell">
-          <span class="stat-cell__value">1.39GB</span>
-          <span class="stat-cell__label">MPS VRAM</span>
+          <span class="stat-cell__value">더 정확</span>
+          <span class="stat-cell__label">오류율 4.4%p 낮음 (vs Whisper)</span>
         </div>
         <div class="stat-cell">
-          <span class="stat-cell__value">&lt; 1ms</span>
-          <span class="stat-cell__label">C++17 빔 서치</span>
+          <span class="stat-cell__value">0원</span>
+          <span class="stat-cell__label">사용자는 무료 · 무제한</span>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section__heading">Architecture.</h2>
-      <div class="flow-steps" aria-label="모델 추론 파이프라인">
-        <div class="flow-step">
-          <span class="flow-step__num">01</span>
-          <span class="flow-step__title">Log-Mel</span>
-          <span class="flow-step__desc">16kHz · 128-Bin</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">02</span>
-          <span class="flow-step__title">Backbone</span>
-          <span class="flow-step__desc">EmbeddingGemma-2</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">03</span>
-          <span class="flow-step__title">Conformer</span>
-          <span class="flow-step__desc">10-Layer (34.3M)</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">04</span>
-          <span class="flow-step__title">Cosine CTC</span>
-          <span class="flow-step__desc">2,048 BPE</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">05</span>
-          <span class="flow-step__title">C++17 + LM</span>
-          <span class="flow-step__desc">&lt;1ms · 5-Gram</span>
-        </div>
+      <h2 class="section__heading">Why.</h2>
+      <p class="section__lead">외부 받아쓰기 API는 비싸고, 녹음을 서버로 보내야 합니다. 그래서 기기 안에서 도는 모델을 직접 만들기로 했습니다.</p>
+      <div class="spec-grid spec-grid--3">
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">Free</span>
+          <h3 class="spec-card__title">사용량 걱정 없이</h3>
+          <p class="spec-card__body">API 비용이 들지 않아 모든 사용자에게 무제한으로 열어둘 수 있어요.</p>
+        </article>
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">Private</span>
+          <h3 class="spec-card__title">녹음이 밖으로 나가지 않게</h3>
+          <p class="spec-card__body">수업 녹음이 휴대폰 밖으로 전송되지 않아요.</p>
+        </article>
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">Lecture</span>
+          <h3 class="spec-card__title">강의에 강하게</h3>
+          <p class="spec-card__body">강의 음성 300GB에 일상 대화 230GB를 더해, 총 530GB로 학습했어요.</p>
+        </article>
       </div>
+    </section>
 
-      <div class="tech-split" style="margin-top: 40px;">
-        <div class="tech-visual">
-          <span>구조 / 벤치마크 이미지</span>
+    <section class="section">
+      <h2 class="section__heading">Result.</h2>
+      <p class="section__lead">실제 대학 전공 강의 41분 43초 녹음으로 비교했습니다. (M1 Pro 노트북 기준)</p>
+      <div class="chart-grid">
+        <div>
+          <h3 class="chart__title">받아쓰는 시간</h3>
+          <p class="chart__note">짧을수록 좋아요</p>
+          <div class="bar-chart">
+            <div class="bar-row bar-row--focus">
+              <span>NoteSoop v2</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 8.4%;"></div></div>
+              <span class="bar-row__value">59초</span>
+            </div>
+            <div class="bar-row">
+              <span>NoteSoop v1</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 8.9%;"></div></div>
+              <span class="bar-row__value">63초</span>
+            </div>
+            <div class="bar-row">
+              <span>Whisper-medium</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 35.7%;"></div></div>
+              <span class="bar-row__value">4분 11초</span>
+            </div>
+            <div class="bar-row">
+              <span>Whisper-large-v3</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 100%;"></div></div>
+              <span class="bar-row__value">11분 45초</span>
+            </div>
+          </div>
         </div>
-        <div class="tech-info">
-          <div class="tech-meta">
-            <div class="tech-meta__row">
-              <span class="tech-meta__label">환경 :</span>
-              <span class="tech-meta__val">PyTorch (MPS · CUDA · CPU) / C++17 / Metal</span>
+        <div>
+          <h3 class="chart__title">필요한 메모리</h3>
+          <p class="chart__note">작을수록 다른 앱과 함께 쓰기 좋아요</p>
+          <div class="bar-chart">
+            <div class="bar-row bar-row--focus">
+              <span>NoteSoop v2</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 22%;"></div></div>
+              <span class="bar-row__value">1.4GB</span>
             </div>
-            <div class="tech-meta__row">
-              <span class="tech-meta__label">크기 :</span>
-              <span class="tech-meta__val">34.8M (133MB + KenLM 80.2MB)</span>
+            <div class="bar-row">
+              <span>NoteSoop v1</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 24.3%;"></div></div>
+              <span class="bar-row__value">1.5GB</span>
             </div>
-            <div class="tech-meta__row">
-              <span class="tech-meta__label">데이터 :</span>
-              <span class="tech-meta__val">530GB (강의 300GB + 대화 230GB)</span>
+            <div class="bar-row">
+              <span>Whisper-medium</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 54.8%;"></div></div>
+              <span class="bar-row__value">3.5GB</span>
             </div>
-            <div class="tech-meta__row">
-              <span class="tech-meta__label">라이선스 :</span>
-              <span class="tech-meta__val">Apache-2.0</span>
+            <div class="bar-row">
+              <span>Whisper-large-v3</span>
+              <div class="bar-row__track"><div class="bar-row__fill" style="width: 100%;"></div></div>
+              <span class="bar-row__value">6.3GB</span>
             </div>
           </div>
         </div>
@@ -116,139 +140,85 @@
     </section>
 
     <section class="section">
-      <h2 class="section__heading">Benchmark.</h2>
-
-      <h3 class="table-caption">실전 전공 강의 41분 43초 (M1 Pro · MPS bf16)</h3>
-      <div class="table-wrap">
-        <table class="editorial-table editorial-table--auto">
-          <thead>
-            <tr>
-              <th>모델</th>
-              <th>시간 (배속)</th>
-              <th>CER</th>
-              <th>WER</th>
-              <th>VRAM</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="is-highlight">
-              <td data-label="모델">Notesoop-STT-Ko-v2</td>
-              <td data-label="시간 (배속)">59.3초 (42.2x)</td>
-              <td data-label="CER">21.19%</td>
-              <td data-label="WER">37.77%</td>
-              <td data-label="VRAM">1.39 GB</td>
-            </tr>
-            <tr>
-              <td data-label="모델">Notesoop-STT-Ko-v1</td>
-              <td data-label="시간 (배속)">62.7초 (39.9x)</td>
-              <td data-label="CER">22.46%</td>
-              <td data-label="WER">39.25%</td>
-              <td data-label="VRAM">1.54 GB</td>
-            </tr>
-            <tr>
-              <td data-label="모델">Whisper-large-v3</td>
-              <td data-label="시간 (배속)">11분 45초 (3.6x)</td>
-              <td data-label="CER">25.55%</td>
-              <td data-label="WER">42.10%</td>
-              <td data-label="VRAM">6.33 GB</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="table-caption">Zeroth-Korean (V1 → V2)</h3>
-      <div class="table-wrap">
-        <table class="editorial-table editorial-table--auto">
-          <thead>
-            <tr>
-              <th>지표</th>
-              <th>V1</th>
-              <th>V2</th>
-              <th>개선</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="지표">CER / WER</td>
-              <td data-label="V1">15.88% / 45.28%</td>
-              <td data-label="V2"><strong>10.47% / 35.07%</strong></td>
-              <td data-label="개선">-5.41%p / -10.21%p</td>
-            </tr>
-            <tr>
-              <td data-label="지표">배속</td>
-              <td data-label="V1">20.3x</td>
-              <td data-label="V2"><strong>28.5x</strong></td>
-              <td data-label="개선">+40.4%</td>
-            </tr>
-            <tr>
-              <td data-label="지표">Host RAM</td>
-              <td data-label="V1">2,639 MB</td>
-              <td data-label="V2"><strong>1,405 MB</strong></td>
-              <td data-label="개선">-46.7%</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 class="section__heading">v1 → v2.</h2>
+      <p class="section__lead">강의에만 강했던 v1을, 일상 대화까지 알아듣도록 키웠습니다. (표준 한국어 벤치마크 기준)</p>
+      <div class="stat-strip stat-strip--3">
+        <div class="stat-cell">
+          <span class="stat-cell__value">15.9%<small>→</small>10.5%</span>
+          <span class="stat-cell__label">글자 오류율</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">20x<small>→</small>28.5x</span>
+          <span class="stat-cell__label">실시간 대비 속도</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">2.6GB<small>→</small>1.4GB</span>
+          <span class="stat-cell__label">사용 메모리</span>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section__heading">Challenge &amp; Solution.</h2>
-      <div class="table-wrap">
-        <table class="editorial-table">
-          <thead>
-            <tr>
-              <th class="col-no">No.</th>
-              <th>Challenge</th>
-              <th>Solution</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-no" data-label="No.">01</td>
-              <td data-label="Challenge">V1 25K 사전의 메모리·OOV 부담</td>
-              <td data-label="Solution">2,048 BPE 축소 + 5-Gram KenLM</td>
-              <td data-label="Result">CER -5.41%p · RAM -46.7%</td>
-            </tr>
-            <tr>
-              <td class="col-no" data-label="No.">02</td>
-              <td data-label="Challenge">강의 편향으로 구어체 인식 저하</td>
-              <td data-label="Solution">자유 대화 230GB 추가 + Metal 학습</td>
-              <td data-label="Result">실전 CER 21.19% (Whisper -4.36%p)</td>
-            </tr>
-            <tr>
-              <td class="col-no" data-label="No.">03</td>
-              <td data-label="Challenge">디코딩 병목 · 경계 중복</td>
-              <td data-label="Solution">C++17 빔 서치(&lt;1ms) + Fuzzy LCS</td>
-              <td data-label="Result">42.2x (Whisper 11.9배) · 오픈소스</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 class="section__heading">How It Works.</h2>
+      <div class="flow-steps" aria-label="받아쓰기 과정">
+        <div class="flow-step">
+          <span class="flow-step__num">01</span>
+          <span class="flow-step__title">나누기</span>
+          <span class="flow-step__desc">긴 녹음을 짧은 구간으로</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">02</span>
+          <span class="flow-step__title">듣기</span>
+          <span class="flow-step__desc">음성의 특징을 읽어내기</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">03</span>
+          <span class="flow-step__title">글자로</span>
+          <span class="flow-step__desc">소리를 한 번에 글자로</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">04</span>
+          <span class="flow-step__title">다듬기</span>
+          <span class="flow-step__desc">문맥에 맞게 띄어쓰기 · 어미 보정</span>
+        </div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">EmbeddingGemma-2</span>
+        <span class="chip">Conformer</span>
+        <span class="chip">CTC</span>
+        <span class="chip">KenLM 5-Gram</span>
+        <span class="chip">C++17 Beam Search</span>
+        <span class="chip">PyTorch · Metal</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Spec.</h2>
+      <div class="tech-meta">
+        <div class="tech-meta__row">
+          <span class="tech-meta__label">크기 :</span>
+          <span class="tech-meta__val">34.8M 파라미터 (133MB)</span>
+        </div>
+        <div class="tech-meta__row">
+          <span class="tech-meta__label">데이터 :</span>
+          <span class="tech-meta__val">530GB (강의 300GB + 자유 대화 230GB)</span>
+        </div>
+        <div class="tech-meta__row">
+          <span class="tech-meta__label">환경 :</span>
+          <span class="tech-meta__val">Apple Silicon · NVIDIA GPU · CPU</span>
+        </div>
+        <div class="tech-meta__row">
+          <span class="tech-meta__label">공개 :</span>
+          <span class="tech-meta__val">모델과 추론 코드 전체 Apache-2.0 오픈소스</span>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <h2 class="section__heading">Lessons Learned.</h2>
-      <div class="table-wrap">
-        <table class="editorial-table">
-          <thead>
-            <tr>
-              <th class="col-no">No.</th>
-              <th>내용</th>
-              <th class="col-mood">경험</th>
-              <th>배운 점</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-no" data-label="No.">01</td>
-              <td data-label="내용">온디바이스 ASR V1 → V2 경량화</td>
-              <td class="col-mood" data-label="경험">😄</td>
-              <td class="text-left" data-label="배운 점">모델 크기보다 사전·데이터·C++ 최적화의 결합이 실전 성능을 결정하며, 원가와 프라이버시를 함께 해결함.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <blockquote class="quote-block">
+        큰 모델보다, 우리 사용자에게 맞는 데이터와 가벼운 구조가 실제 성능을 만든다는 걸 배웠습니다. 모델을 직접 만들자 비용과 프라이버시 문제가 함께 풀렸습니다.
+      </blockquote>
     </section>
 
     <nav class="page-nav" aria-label="세부 작업 이동">
