@@ -21,18 +21,12 @@
   --font-body: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
 
   --bg: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.88);
-  --surface: #f7f7f8;
-  --surface-hover: #f1f1f3;
+  --surface: #f7f7f7;
   --ink: #111111;
   --ink-secondary: #444444;
-  --ink-muted: #666666;
-  --line: #e5e5e5;
+  --ink-muted: #6e6e6e;
+  --line: #e4e4e4;
   --line-strong: #999999;
-  --shadow-card: 0 8px 28px rgba(0, 0, 0, 0.06);
-  --shadow-table: 0 4px 20px rgba(0, 0, 0, 0.05);
-  --radius-sm: 6px;
-  --radius-md: 10px;
   --max-width: 1080px;
   --gutter: 48px;
 }
@@ -73,9 +67,8 @@ a {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 1.5px solid var(--ink);
   outline-offset: 3px;
-  border-radius: 3px;
 }
 
 button {
@@ -88,14 +81,11 @@ img {
 }
 
 /* ==========================================================================
-   Running Header (Sticky Editorial Top Bar)
+   Running Header
    ========================================================================== */
 .top-bar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
   width: 100%;
-  padding: 20px var(--gutter);
+  padding: 28px var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,10 +94,6 @@ img {
   font-weight: 500;
   color: var(--ink);
   letter-spacing: -0.01em;
-  background-color: var(--bg-glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(229, 229, 229, 0.75);
 }
 
 .top-bar__left,
@@ -119,7 +105,7 @@ img {
 
 .top-bar__link {
   color: var(--ink-secondary);
-  transition: color 0.18s ease;
+  transition: color 0.15s ease;
 }
 
 .top-bar__link:hover {
@@ -143,10 +129,10 @@ img {
 }
 
 /* ==========================================================================
-   Cover / Intro (Page 1 & 2 vibe)
+   Cover / Intro
    ========================================================================== */
 .cover {
-  padding: 80px 0 64px;
+  padding: 88px 0 64px;
 }
 
 .cover__title {
@@ -163,10 +149,10 @@ img {
 }
 
 .cover__subtitle {
-  font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+  font-size: clamp(1rem, 1.7vw, 1.1875rem);
   font-weight: 400;
   color: var(--ink-secondary);
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   line-height: 1.65;
 }
 
@@ -198,7 +184,7 @@ img {
 
 a.profile-meta__value {
   border-bottom: 1px solid transparent;
-  transition: border-color 0.18s ease;
+  transition: border-color 0.15s ease;
 }
 
 a.profile-meta__value:hover {
@@ -218,7 +204,7 @@ a.profile-meta__value:hover {
 
 .section__heading {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.5rem, 3vw, 2.125rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
@@ -229,46 +215,11 @@ a.profile-meta__value:hover {
   font-weight: 400;
   color: var(--ink-secondary);
   line-height: 1.8;
-  max-width: 780px;
+  max-width: 740px;
 }
 
 .section__lead + .section__lead {
   margin-top: 14px;
-}
-
-/* Arrow List (About / Core Capabilities) */
-.arrow-list {
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.arrow-list__item {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  font-size: 0.96875rem;
-  line-height: 1.65;
-  color: var(--ink);
-}
-
-.arrow-list__key {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.9375rem;
-}
-
-.arrow-list__arrow {
-  margin: 0 10px;
-  color: var(--ink-muted);
-}
-
-.arrow-list__desc {
-  font-weight: 400;
-  color: var(--ink-secondary);
 }
 
 /* ==========================================================================
@@ -280,12 +231,12 @@ a.profile-meta__value:hover {
 
 .project-row {
   display: grid;
-  grid-template-columns: 168px 132px minmax(160px, 1fr) minmax(200px, 1.4fr) auto;
+  grid-template-columns: 164px 128px minmax(150px, 1fr) minmax(200px, 1.4fr) auto;
   align-items: center;
   gap: 24px;
-  padding: 24px 12px;
+  padding: 24px 8px;
   border-bottom: 1px solid var(--line);
-  transition: background-color 0.18s ease;
+  transition: background-color 0.15s ease;
 }
 
 .project-row:hover {
@@ -297,7 +248,6 @@ a.profile-meta__value:hover {
   aspect-ratio: 16 / 10;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -305,11 +255,6 @@ a.profile-meta__value:hover {
   color: var(--ink-muted);
   font-size: 0.8125rem;
   font-weight: 500;
-  transition: border-color 0.18s ease;
-}
-
-.project-row:hover .project-row__thumb {
-  border-color: var(--line-strong);
 }
 
 .project-row__thumb img {
@@ -329,7 +274,7 @@ a.profile-meta__value:hover {
 .project-row__title-wrap {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .project-row__title {
@@ -342,7 +287,7 @@ a.profile-meta__value:hover {
 
 .project-row__sub {
   font-size: 0.84375rem;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink-muted);
 }
 
@@ -354,10 +299,10 @@ a.profile-meta__value:hover {
 }
 
 .project-row__arrow {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 500;
   color: var(--ink-muted);
-  transition: transform 0.18s ease, color 0.18s ease;
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
 .project-row:hover .project-row__arrow {
@@ -370,12 +315,11 @@ a.profile-meta__value:hover {
   margin-top: 40px;
   padding: 24px 28px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  transition: border-color 0.18s ease, background-color 0.18s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .experiments-banner:hover {
@@ -402,7 +346,7 @@ a.profile-meta__value:hover {
 }
 
 /* ==========================================================================
-   Project Hero (Centered Title + Thin Rule + Subtitle, PDF Page 3, 8, 14)
+   Project Hero
    ========================================================================== */
 .project-hero {
   padding: 56px 0 48px;
@@ -425,10 +369,10 @@ a.profile-meta__value:hover {
 }
 
 .project-hero__desc {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--ink-secondary);
-  max-width: 580px;
+  max-width: 560px;
   margin: 0 auto 44px;
   line-height: 1.7;
 }
@@ -440,8 +384,6 @@ a.profile-meta__value:hover {
   aspect-ratio: 16 / 10;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -449,7 +391,7 @@ a.profile-meta__value:hover {
   justify-content: center;
   gap: 8px;
   color: var(--ink-muted);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
 }
 
@@ -457,42 +399,6 @@ a.profile-meta__value:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* ==========================================================================
-   Key Results / Impact Strip (Project Hub)
-   ========================================================================== */
-.impact-grid {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.impact-card {
-  padding: 20px 22px;
-  background-color: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.impact-card__value {
-  font-family: var(--font-display);
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-}
-
-.impact-card__label {
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: var(--ink-secondary);
-  line-height: 1.5;
 }
 
 /* ==========================================================================
@@ -504,12 +410,12 @@ a.profile-meta__value:hover {
 
 .subtask-row {
   display: grid;
-  grid-template-columns: 44px 128px minmax(150px, 0.9fr) 1.5fr auto;
+  grid-template-columns: 52px 1fr 1.6fr auto;
   align-items: center;
   gap: 20px;
-  padding: 22px 12px;
+  padding: 24px 8px;
   border-bottom: 1px solid var(--line);
-  transition: background-color 0.18s ease;
+  transition: background-color 0.15s ease;
 }
 
 .subtask-row:hover {
@@ -524,65 +430,11 @@ a.profile-meta__value:hover {
   font-variant-numeric: tabular-nums;
 }
 
-.subtask-row__thumb {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  background-color: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink-muted);
-  font-size: 0.75rem;
-  font-weight: 500;
-  transition: border-color 0.18s ease;
-}
-
-.subtask-row:hover .subtask-row__thumb {
-  border-color: var(--line-strong);
-}
-
-.subtask-row__thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.subtask-row__title-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
 .subtask-row__title {
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-}
-
-.subtask-row__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--ink-secondary);
-  background-color: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-}
-
-.subtask-row:hover .tag {
-  background-color: var(--bg);
 }
 
 .subtask-row__desc {
@@ -596,7 +448,7 @@ a.profile-meta__value:hover {
   font-size: 1rem;
   font-weight: 500;
   color: var(--ink-muted);
-  transition: transform 0.18s ease, color 0.18s ease;
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
 .subtask-row:hover .subtask-row__arrow {
@@ -605,58 +457,43 @@ a.profile-meta__value:hover {
 }
 
 /* ==========================================================================
-   Sub-task Header & Sibling Part Tabs
+   Sub-task Header & Plain Editorial Part Navigation
    ========================================================================== */
-.part-tabs {
+.part-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 20px 0 0;
-}
-
-.part-tabs__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
+  gap: 10px 24px;
+  padding: 8px 0 18px;
+  border-bottom: 1px solid var(--line);
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--ink-secondary);
-  background-color: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
 }
 
-.part-tabs__item:hover {
-  border-color: var(--ink);
+.part-nav__item {
+  color: var(--ink-muted);
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.part-nav__item:hover {
   color: var(--ink);
 }
 
-.part-tabs__item--active {
-  background-color: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
-}
-
-.part-tabs__item--active:hover {
-  color: var(--bg);
-}
-
-.part-tabs__num {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  opacity: 0.75;
+.part-nav__item--active {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom-color: var(--ink);
 }
 
 .subpage-header {
-  padding: 36px 0 36px;
+  padding: 44px 0 36px;
   border-bottom: 1px solid var(--line);
 }
 
 .subpage-header__eyebrow {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink-muted);
   margin-bottom: 10px;
 }
@@ -671,7 +508,7 @@ a.profile-meta__value:hover {
 }
 
 .subpage-header__summary {
-  font-size: 1.03125rem;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--ink-secondary);
   max-width: 680px;
@@ -679,7 +516,7 @@ a.profile-meta__value:hover {
 }
 
 /* ==========================================================================
-   Image Gallery Row (PDF Page 4, 9, 15)
+   Image Gallery Row
    ========================================================================== */
 .gallery-grid {
   margin-top: 36px;
@@ -695,7 +532,7 @@ a.profile-meta__value:hover {
 .gallery-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .gallery-card__frame {
@@ -703,8 +540,6 @@ a.profile-meta__value:hover {
   aspect-ratio: 4 / 3;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-card);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -729,7 +564,7 @@ a.profile-meta__value:hover {
 }
 
 /* ==========================================================================
-   Technical 2-Column Split (PDF Page 5, 10, 16)
+   Technical 2-Column Split
    ========================================================================== */
 .tech-split {
   display: grid;
@@ -743,8 +578,6 @@ a.profile-meta__value:hover {
   aspect-ratio: 4 / 3;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-card);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -811,15 +644,12 @@ a.profile-meta__value:hover {
 }
 
 /* ==========================================================================
-   Editorial Tables (PDF Page 6, 7, 11, 13, 17, 18)
+   Editorial Tables
    ========================================================================== */
 .table-wrap {
   width: 100%;
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-table);
-  overflow: hidden;
 }
 
 .editorial-table {
@@ -952,7 +782,7 @@ a.profile-meta__value:hover {
 
 .page-nav__link {
   color: var(--ink-secondary);
-  transition: color 0.18s ease;
+  transition: color 0.15s ease;
 }
 
 .page-nav__link:hover {
@@ -1024,38 +854,18 @@ a.profile-meta__value:hover {
     --gutter: 28px;
   }
 
-  .impact-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .subtask-row {
-    grid-template-columns: 36px 112px 1fr auto;
-    gap: 8px 16px;
-  }
-
-  .subtask-row__num {
-    grid-column: 1;
-    grid-row: 1 / 3;
-  }
-
-  .subtask-row__thumb {
-    grid-column: 2;
-    grid-row: 1 / 3;
-  }
-
-  .subtask-row__title-wrap {
-    grid-column: 3;
-    grid-row: 1;
+    grid-template-columns: 44px 1fr auto;
+    gap: 8px 14px;
   }
 
   .subtask-row__desc {
-    grid-column: 3;
-    grid-row: 2;
+    grid-column: 2 / 3;
   }
 
   .subtask-row__arrow {
     grid-row: 1 / 3;
-    grid-column: 4;
+    grid-column: 3;
   }
 
   .tech-split {
@@ -1074,7 +884,7 @@ a.profile-meta__value:hover {
   }
 
   .top-bar {
-    padding: 16px var(--gutter);
+    padding: 20px var(--gutter);
     font-size: 0.875rem;
   }
 
@@ -1084,10 +894,6 @@ a.profile-meta__value:hover {
 
   .section {
     padding: 40px 0;
-  }
-
-  .impact-grid {
-    grid-template-columns: 1fr;
   }
 
   .project-row {
@@ -1123,37 +929,8 @@ a.profile-meta__value:hover {
   }
 
   .subtask-row {
-    grid-template-columns: 32px 1fr auto;
-    gap: 8px 12px;
+    grid-template-columns: 36px 1fr auto;
     padding: 20px 4px;
-  }
-
-  .subtask-row__thumb {
-    grid-column: 1 / 4;
-    grid-row: 1;
-    margin-bottom: 4px;
-  }
-
-  .subtask-row__num {
-    grid-column: 1;
-    grid-row: 2;
-    align-self: start;
-    padding-top: 2px;
-  }
-
-  .subtask-row__title-wrap {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .subtask-row__desc {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  .subtask-row__arrow {
-    grid-column: 3;
-    grid-row: 2 / 4;
   }
 
   .gallery-grid,
@@ -1173,7 +950,7 @@ a.profile-meta__value:hover {
     gap: 6px;
   }
 
-  /* Responsive Table -> Clean Stacked Editorial Rows */
+  /* Responsive Table -> Clean Stacked Rows */
   .editorial-table thead {
     display: none;
   }
