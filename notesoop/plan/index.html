@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan — NoteSoop</title>
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-bar__left">
+      <a class="top-bar__link" href="../../">Index</a>
+      <span class="top-bar__sep">/</span>
+      <a class="top-bar__link" href="../">NoteSoop</a>
+      <span class="top-bar__sep">/</span>
+      <span>Plan</span>
+    </div>
+    <div class="top-bar__right">Part 01</div>
+  </header>
+
+  <main class="container">
+    <nav class="part-nav" aria-label="NoteSoop 파트 이동">
+      <a class="part-nav__item" href="../">Overview</a>
+      <a class="part-nav__item part-nav__item--active" href="./" aria-current="page">01 Plan</a>
+      <a class="part-nav__item" href="../branding/">02 Branding</a>
+      <a class="part-nav__item" href="../stt-model/">03 STT Model</a>
+    </nav>
+
+    <header class="subpage-header">
+      <div class="subpage-header__eyebrow">NoteSoop · 01</div>
+      <h1 class="subpage-header__title">Plan</h1>
+      <p class="subpage-header__summary">
+        대학생의 학기·주차 단위 학습 흐름에 맞춰 정보 구조(IA), 필기·녹음·AI 복습 파이프라인, 다중 기기 동기화 안전망, 그리고 구독·원가 전략을 설계했습니다.
+      </p>
+    </header>
+
+    <section class="section">
+      <h2 class="section__heading">Product Architecture &amp; Flow.</h2>
+      <p class="section__lead">
+        단순한 PDF 뷰어나 녹음기를 넘어, 홈 화면의 <strong>루트 라이브러리 → 폴더(학기/분류) → 과목 → 주차(자동 번호 감지·순차 생성) → 학습 자료(PDF · 필기 · 녹음)</strong> 계층 위에 강의 수강부터 시험 직전 복습까지 끊기지 않는 단일 학습 루프를 설계했습니다.
+      </p>
+
+      <div class="flow-steps" aria-label="핵심 사용자 시나리오">
+        <div class="flow-step">
+          <span class="flow-step__num">01</span>
+          <span class="flow-step__title">자료 업로드</span>
+          <span class="flow-step__desc">과목·주차별 PDF 강의안 등록</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">02</span>
+          <span class="flow-step__title">필기 · 녹음</span>
+          <span class="flow-step__desc">PDF 필기 및 타임라인 동기화 녹음</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">03</span>
+          <span class="flow-step__title">STT 전사</span>
+          <span class="flow-step__desc">온디바이스 / 서버 하이브리드 변환</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">04</span>
+          <span class="flow-step__title">AI 요약</span>
+          <span class="flow-step__desc">핵심 개념·예상 출제 포인트 정리</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">05</span>
+          <span class="flow-step__title">퀴즈 · 모의고사</span>
+          <span class="flow-step__desc">기출(족보) 반영 문제 출제·진단</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">06</span>
+          <span class="flow-step__title">오답 · TTS 강의</span>
+          <span class="flow-step__desc">오답노트 해설 및 온디바이스 청취</span>
+        </div>
+      </div>
+
+      <div class="spec-grid">
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">Workspace</span>
+          <h3 class="spec-card__title">필기 워크스페이스 &amp; 녹음 동기화</h3>
+          <p class="spec-card__body">
+            PDF 교재와 빈 노트 위에서 펜·형광펜·지우개·올가미와 부유 텍스트 상자(타이핑)를 함께 지원합니다. 녹음과 필기를 동시에 진행하면 재생 시 당시 필기 획이 타이밍에 맞춰 재현되어 복습 맥락을 그대로 되살립니다.
+          </p>
+        </article>
+
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">Audio Intelligence</span>
+          <h3 class="spec-card__title">하이브리드 STT &amp; 온디바이스 엔진</h3>
+          <p class="spec-card__body">
+            고품질 서버 전사(Gemini)와 완전 로컬 Conformer-CTC 전사를 병행합니다. 온디바이스 전사는 20초 청크 스트리밍으로 환각 0%를 실현하고, 122MB 모델 동적 다운로드(이어받기) 및 쿼터 미차감 무제한 사용을 제공합니다.
+          </p>
+        </article>
+
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">AI Study Loop</span>
+          <h3 class="spec-card__title">통합 소스 선택 기반 AI 학습 생성</h3>
+          <p class="spec-card__body">
+            단일 소스 선택 화면(<code>SourceSelectionScreen</code>)에서 PDF·필기·전사본을 묶어 AI 요약, 복습 퀴즈, 기출·커스텀 조건 반영 모의고사(오답노트 연동), 기기 내장 온디바이스 TTS 슬라이드 강의를 생성하고 히스토리를 관리합니다.
+          </p>
+        </article>
+
+        <article class="spec-card">
+          <span class="spec-card__eyebrow">Sync &amp; Privacy</span>
+          <h3 class="spec-card__title">클라우드 동기화 안전망 &amp; 프라이버시</h3>
+          <p class="spec-card__body">
+            Pro/Max 대상 전체 스냅샷·과목 엔티티 동기화에 UTF-8 MD5 해시와 3-way 충돌 병합(C3 Fix), 미업로드 변경분(Dirty Queue) 캐시 보존, <code>trash/</code> 휴지통, Wi-Fi 전용 옵션 및 즉각 완전 파기(<code>resetUserCloudData</code>)를 구축했습니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Subscription &amp; Unit Economics.</h2>
+      <p class="section__lead">
+        대학생 타겟의 높은 가격 민감도를 반영해 Plus(4,900원)·Pro(11,900원)로 진입 장벽을 낮추고, 관리자 원격 설정(<code>AppConfig/subscriptionPlans</code>)으로 한도를 탄력 운영할 수 있게 설계했습니다. 동시에 2026년 프로모션가와 2027년 API 정가 전환 시나리오를 비교해 플랜별 손익 구조를 점검했습니다.
+      </p>
+
+      <h3 class="table-caption">플랜별 월간 사용량 한도 및 가격</h3>
+      <div class="table-wrap">
+        <table class="editorial-table editorial-table--auto">
+          <thead>
+            <tr>
+              <th>플랜</th>
+              <th>가격</th>
+              <th>강의 추가</th>
+              <th>슬라이드·퀴즈</th>
+              <th>서버 STT</th>
+              <th>시험문제</th>
+              <th>AI 요약</th>
+              <th>클라우드 동기화</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="플랜"><strong>Free</strong></td>
+              <td data-label="가격">무료</td>
+              <td data-label="강의 추가">월 30회</td>
+              <td data-label="슬라이드·퀴즈">월 5회</td>
+              <td data-label="서버 STT">180분</td>
+              <td data-label="시험문제">월 5회</td>
+              <td data-label="AI 요약">월 10회</td>
+              <td data-label="클라우드 동기화">없음</td>
+            </tr>
+            <tr>
+              <td data-label="플랜"><strong>Plus</strong></td>
+              <td data-label="가격">4,900원</td>
+              <td data-label="강의 추가">월 50회</td>
+              <td data-label="슬라이드·퀴즈">월 20회</td>
+              <td data-label="서버 STT">600분</td>
+              <td data-label="시험문제">월 20회</td>
+              <td data-label="AI 요약">월 20회</td>
+              <td data-label="클라우드 동기화">없음</td>
+            </tr>
+            <tr class="is-highlight">
+              <td data-label="플랜"><strong>Pro</strong></td>
+              <td data-label="가격">11,900원</td>
+              <td data-label="강의 추가">월 80회</td>
+              <td data-label="슬라이드·퀴즈">월 40회</td>
+              <td data-label="서버 STT">1,200분</td>
+              <td data-label="시험문제">월 30회</td>
+              <td data-label="AI 요약">월 30회</td>
+              <td data-label="클라우드 동기화">전체 지원</td>
+            </tr>
+            <tr>
+              <td data-label="플랜"><strong>Max</strong></td>
+              <td data-label="가격">20,900원</td>
+              <td data-label="강의 추가">무제한</td>
+              <td data-label="슬라이드·퀴즈">무제한</td>
+              <td data-label="서버 STT">무제한</td>
+              <td data-label="시험문제">무제한</td>
+              <td data-label="AI 요약">무제한</td>
+              <td data-label="클라우드 동기화">전체 지원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">
+        ※ 온디바이스 Conformer-CTC 전사는 외부 API를 호출하지 않아 모든 플랜에서 쿼터 차감 없이 무제한 사용 가능합니다.<br />
+        ※ AI 기능 요청당 원가(2026 프로모션 → 2027 정가, ₩1,400/$1 기준): 메타데이터(Gemini 2.5 Flash-Lite) $0.00108, AI 요약(Gemini 3.8 Flash) $0.0165 → $0.033, 슬라이드 강의 $0.0229 → $0.0459, 시험문제 생성 $0.0428 → $0.0855.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Challenge &amp; Solution.</h2>
+      <div class="table-wrap">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th class="col-no">No.</th>
+              <th>Challenge</th>
+              <th>Solution</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-no" data-label="No.">01</td>
+              <td data-label="Challenge">태블릿·스마트폰 간 동시 필기 시 동기화 충돌과 오프라인 캐시 정리 중 미업로드 파일 유실 위험</td>
+              <td data-label="Solution">UTF-8 MD5 해시 및 revision 추적 기반 3-way 자동 병합(C3 Fix)을 적용하고, 캐시 정리 시 Dirty Queue 파일을 보호하며 삭제 파일은 <code>trash/</code>에 아카이빙</td>
+              <td data-label="Result">다중 기기·오프라인 전환 상황에서도 학습 자료 무결성 및 복구 안정성 확보</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">02</td>
+              <td data-label="Challenge">장시간 강의 녹음 전사와 슬라이드 음성 합성(TTS)의 외부 API 원가 부담, 기기 발열 및 프라이버시 우려</td>
+              <td data-label="Solution">20초 청크 분할 온디바이스 Conformer-CTC(122MB 동적 다운로드)와 쿨다운 적용 기기 내장 TTS 엔진으로 100% 로컬 처리 전환</td>
+              <td data-label="Result">STT 원가 0원·쿼터 무제한 제공, 메모리 피크·발열 억제 및 로컬 프라이버시 보호 달성</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">03</td>
+              <td data-label="Challenge">가입자 유입 대비 저조한 유료 전환율과 Plus 4,900원 인하 시 2027년 API 정가 전환 적자 리스크</td>
+              <td data-label="Solution">스토어 수수료 30% 반영 시 Plus 실수령액(약 ₩3,430) 대비 최대 원가(약 ₩4,602) 역전 구조를 진단하고, Free 유저의 기본 한도 미소진 현상을 가치 인지 격차(Value Awareness Gap)로 정의</td>
+              <td data-label="Result">단순 가격 조정이 아닌 온보딩·핵심 워크플로우 체험 유도 및 기능별 소진율 트래킹으로 차기 로드맵 수립</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Lessons Learned.</h2>
+      <div class="table-wrap">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th class="col-no">No.</th>
+              <th>내용</th>
+              <th class="col-mood">경험</th>
+              <th>배운 점</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-no" data-label="No.">01</td>
+              <td data-label="내용">구독 가격 인하 이후 Free 사용량 데이터와 API 원가 구조 교차 분석</td>
+              <td class="col-mood" data-label="경험">💡</td>
+              <td class="text-left" data-label="배운 점">
+                Free 유저가 기본 한도조차 소진하지 않는다면 유료 전환 장벽은 가격보다 '기능 가치를 체감하는 첫 경험'에 있음을 확인했습니다. AI 제품은 토큰 단가 변동까지 반영한 유닛 이코노믹스와 온보딩 설계가 반드시 함께 가야 합니다.
+                <span class="editorial-table__subnote">→ 기능별 소진율·활성도 트래킹 및 첫 학습 루프 온보딩 개선으로 연결</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <nav class="page-nav" aria-label="세부 작업 이동">
+      <a class="page-nav__link" href="../">← NoteSoop</a>
+      <a class="page-nav__link" href="../branding/">Next: Branding →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 이영찬</span>
+    <div class="site-footer__links">
+      <a class="site-footer__link" href="mailto:yclee0691@daum.net">yclee0691@daum.net</a>
+      <a class="site-footer__link" href="https://instagram.com/yc.builds" target="_blank" rel="noopener">@yc.builds</a>
+    </div>
+  </footer>
+</body>
+</html>

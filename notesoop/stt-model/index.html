@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STT Model — NoteSoop</title>
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-bar__left">
+      <a class="top-bar__link" href="../../">Index</a>
+      <span class="top-bar__sep">/</span>
+      <a class="top-bar__link" href="../">NoteSoop</a>
+      <span class="top-bar__sep">/</span>
+      <span>STT Model</span>
+    </div>
+    <div class="top-bar__right">Part 03</div>
+  </header>
+
+  <main class="container">
+    <nav class="part-nav" aria-label="NoteSoop 파트 이동">
+      <a class="part-nav__item" href="../">Overview</a>
+      <a class="part-nav__item" href="../plan/">01 Plan</a>
+      <a class="part-nav__item" href="../branding/">02 Branding</a>
+      <a class="part-nav__item part-nav__item--active" href="./" aria-current="page">03 STT Model</a>
+    </nav>
+
+    <header class="subpage-header">
+      <div class="subpage-header__eyebrow">NoteSoop · 03</div>
+      <h1 class="subpage-header__title">STT Model</h1>
+      <p class="subpage-header__summary">
+        <strong>Notesoop-STT-Ko-v2</strong> — 530GB 한국어 음성 코퍼스로 학습하고 Apache-2.0으로 공개한 차세대 한국어 온디바이스 음성인식(ASR) 모델입니다. 비자기회귀 단일 패스 구조와 C++17 빔 서치로 초고속·초경량 전사를 실현했습니다.
+      </p>
+      <div class="link-bar link-bar--left">
+        <a class="link-pill" href="https://huggingface.co/Phsoft-ai/Notesoop-STT-Ko-v2" target="_blank" rel="noopener">Hugging Face 모델 카드 ↗</a>
+      </div>
+    </header>
+
+    <section class="section section--tight" aria-label="STT 핵심 성과">
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <span class="stat-cell__value">42.2x</span>
+          <span class="stat-cell__label">41분 43초 강의 59.3초 전사 (Whisper-large-v3 대비 11.9배)</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">10.47%</span>
+          <span class="stat-cell__label">Zeroth-Korean CER (V1 15.88% 대비 -5.41%p)</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">1.39GB</span>
+          <span class="stat-cell__label">실전 MPS VRAM (Whisper-large-v3 6.3GB 대비 4.5배 적음)</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">&lt; 1ms</span>
+          <span class="stat-cell__label">Native C++17 Rolling-Hash CTC Beam Search</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Technical Architecture.</h2>
+      <p class="section__lead">
+        동결된 Google <code>EmbeddingGemma-2</code> 오디오 인코더 표현(MRL 256차원) 위에 경량 Conformer 음향 리더, 2,048 BPE 초구면 코사인 CTC 헤드, 서브밀리초 네이티브 C++17 빔 서치와 5-Gram KenLM 언어 디코더를 결합한 비자기회귀(Non-Autoregressive) 아키텍처를 설계했습니다.
+      </p>
+
+      <div class="flow-steps" aria-label="모델 추론 파이프라인">
+        <div class="flow-step">
+          <span class="flow-step__num">01</span>
+          <span class="flow-step__title">Audio Input</span>
+          <span class="flow-step__desc">16kHz Mono → 128-Bin Log-Mel</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">02</span>
+          <span class="flow-step__title">Frozen Backbone</span>
+          <span class="flow-step__desc">EmbeddingGemma-2 (MRL 256-dim)</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">03</span>
+          <span class="flow-step__title">Conformer Reader</span>
+          <span class="flow-step__desc">10-Layer (34.3M, d=384, h=6, k=15)</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">04</span>
+          <span class="flow-step__title">Cosine CTC Head</span>
+          <span class="flow-step__desc">Spherical Cosine · 2,048 BPE</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">05</span>
+          <span class="flow-step__title">C++17 + KenLM</span>
+          <span class="flow-step__desc">Rolling-Hash(&lt;1ms) · 5-Gram LM</span>
+        </div>
+        <div class="flow-step">
+          <span class="flow-step__num">06</span>
+          <span class="flow-step__title">Chunk Merge</span>
+          <span class="flow-step__desc">Fuzzy LCS 중복 제거·정리</span>
+        </div>
+      </div>
+
+      <div class="tech-split" style="margin-top: 36px;">
+        <div class="tech-visual">
+          <span>구조 / 벤치마크 이미지</span>
+        </div>
+        <div class="tech-info">
+          <div class="tech-meta">
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">개발 환경 :</span>
+              <span class="tech-meta__val">PyTorch (MPS · CUDA · CPU) / C++17 / Apple Metal Compute Shader</span>
+            </div>
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">학습 파라미터 :</span>
+              <span class="tech-meta__val">34.8M (배포 체크포인트 133MB + KenLM 5-Gram 80.2MB)</span>
+            </div>
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">학습 데이터 :</span>
+              <span class="tech-meta__val">총 530GB (AI Hub 전공 강의 300GB + 자유 대화 230GB)</span>
+            </div>
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">라이선스 :</span>
+              <span class="tech-meta__val">Apache-2.0 (Hugging Face 오픈소스 공개)</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="tech-block__title">설계 목표</h3>
+            <ul class="tech-block__list">
+              <li>1) 비자기회귀 단일 패스 구조로 장시간 강의 전사 시 환각을 억제하고 수십 배속 실시간 처리 달성</li>
+              <li>2) 1.3~1.4GB 초경량 메모리로 8GB/16GB 맥북·모바일에서 PDF 필기 앱과 동시에 쾌적하게 실행</li>
+              <li>3) 강의뿐 아니라 자유 대화·인터뷰·즉흥 구어체까지 아우르는 범용 한국어 인식력 확보</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Benchmark.</h2>
+      <p class="section__lead">
+        Apple M1 Pro (16GB, PyTorch MPS <code>bfloat16</code>) 실측 기준, 실제 대학 전공 강의 롱폼 녹음과 공인 표준 벤치마크(<code>Zeroth-Korean</code>)에서 대형 모델 및 V1 대비 속도와 메모리·정확도 모두를 검증했습니다.
+      </p>
+
+      <h3 class="table-caption">1. 실전 대학 전공 강의 롱폼 녹음 (41분 43초 / 2,503초, Field Test)</h3>
+      <div class="table-wrap">
+        <table class="editorial-table editorial-table--auto">
+          <thead>
+            <tr>
+              <th>모델</th>
+              <th>전사 시간</th>
+              <th>실시간 배속 (RTF)</th>
+              <th>CER</th>
+              <th>WER</th>
+              <th>MPS VRAM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="is-highlight">
+              <td data-label="모델">Notesoop-STT-Ko-v2</td>
+              <td data-label="전사 시간">59.3초</td>
+              <td data-label="실시간 배속">42.2x (0.0237)</td>
+              <td data-label="CER">21.19%</td>
+              <td data-label="WER">37.77%</td>
+              <td data-label="MPS VRAM">1,394 MB</td>
+            </tr>
+            <tr>
+              <td data-label="모델">Notesoop-STT-Ko-v1</td>
+              <td data-label="전사 시간">62.7초</td>
+              <td data-label="실시간 배속">39.9x (0.0251)</td>
+              <td data-label="CER">22.46%</td>
+              <td data-label="WER">39.25%</td>
+              <td data-label="MPS VRAM">1,537 MB</td>
+            </tr>
+            <tr>
+              <td data-label="모델">Whisper-medium (OpenAI)</td>
+              <td data-label="전사 시간">4분 11초 (251.5s)</td>
+              <td data-label="실시간 배속">10.0x (0.1005)</td>
+              <td data-label="CER">26.68%</td>
+              <td data-label="WER">45.82%</td>
+              <td data-label="MPS VRAM">3,467 MB</td>
+            </tr>
+            <tr>
+              <td data-label="모델">Whisper-large-v3 (OpenAI)</td>
+              <td data-label="전사 시간">11분 45초 (704.9s)</td>
+              <td data-label="실시간 배속">3.6x (0.2816)</td>
+              <td data-label="CER">25.55%</td>
+              <td data-label="WER">42.10%</td>
+              <td data-label="MPS VRAM">6,325 MB</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="table-caption">2. 표준 한국어 벤치마크 (Zeroth-Korean Test Set, 457문장 / 1시간 11분)</h3>
+      <div class="table-wrap">
+        <table class="editorial-table editorial-table--auto">
+          <thead>
+            <tr>
+              <th>지표</th>
+              <th>V1</th>
+              <th>V2 (2K BPE + 5-Gram KenLM)</th>
+              <th>개선폭</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="지표">CER</td>
+              <td data-label="V1">15.88%</td>
+              <td data-label="V2"><strong>10.47%</strong></td>
+              <td data-label="개선폭">-5.41%p (상대 34.1% 개선)</td>
+            </tr>
+            <tr>
+              <td data-label="지표">WER</td>
+              <td data-label="V1">45.28%</td>
+              <td data-label="V2"><strong>35.07%</strong></td>
+              <td data-label="개선폭">-10.21%p</td>
+            </tr>
+            <tr>
+              <td data-label="지표">소요 시간 / 배속</td>
+              <td data-label="V1">211.12초 (20.3x)</td>
+              <td data-label="V2"><strong>150.21초 (28.5x)</strong></td>
+              <td data-label="개선폭">+40.4% 가속 (-60.91초)</td>
+            </tr>
+            <tr>
+              <td data-label="지표">Host RAM / MPS VRAM</td>
+              <td data-label="V1">2,639MB / 1,469MB</td>
+              <td data-label="V2"><strong>1,405MB / 1,376MB</strong></td>
+              <td data-label="개선폭">Host RAM -46.7% 절감</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Challenge &amp; Solution.</h2>
+      <div class="table-wrap">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th class="col-no">No.</th>
+              <th>Challenge</th>
+              <th>Solution</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-no" data-label="No.">01</td>
+              <td data-label="Challenge">V1의 25,000 형태소·음절 사전으로 인한 출력 차원 비대화, OOV 취약성 및 2.6GB Host RAM 점유</td>
+              <td data-label="Solution">2,048 SentencePiece BPE로 출력 차원을 12.2배 축소하고, 320만 문장 기반 5-Gram KenLM(80.2MB) 언어 모델을 결합</td>
+              <td data-label="Result">Zeroth-Korean CER -5.41%p·WER -10.21%p 개선 및 Host RAM 46.7% 절감(1,405MB)</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">02</td>
+              <td data-label="Challenge">강의 음성(300GB)만 학습 시 즉흥 구어체·추임새·빠른 발화 구간의 음향 강건성 저하 및 대규모 데이터 학습 비용</td>
+              <td data-label="Solution">AI Hub 자유 대화 음성 230GB를 추가 결합해 총 530GB Zero-Disk 스트리밍 학습 파이프라인과 커스텀 Apple Metal Compute Shader 학습 엔진 구축</td>
+              <td data-label="Result">실전 41분 전공 강의 CER 21.19% 달성 (<code>Whisper-large-v3</code> 25.55% 대비 4.36%p 우위)</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">03</td>
+              <td data-label="Challenge">Python CTC 빔 서치 디코딩 병목과 슬라이딩 윈도우(15초 청크) 경계에서의 단어 중복·반복 현상</td>
+              <td data-label="Solution">Native C++17 Rolling-Hash 빔 서치(&lt;1ms)를 GPU 배치 포워드와 비동기 중첩 실행하고, 최대 8-어절 정확 매칭 + 문자 단위 Fuzzy LCS + 반복 필터 적용</td>
+              <td data-label="Result">41분 43초 강의를 59.3초(42.2x)에 전사하며 <code>Whisper-large-v3</code> 대비 11.9배 고속화</td>
+            </tr>
+            <tr>
+              <td class="col-no" data-label="No.">04</td>
+              <td data-label="Challenge">Apple Silicon MPS 중심이었던 V1의 타 플랫폼(NVIDIA CUDA · CPU) 배포 제약</td>
+              <td data-label="Solution"><code>device="auto"</code> 백엔드 자동 감지(<code>bfloat16</code> Fastpath)와 macOS/Linux/Windows C++ 공유 라이브러리 자동 빌드(Python Fallback 포함) 구현</td>
+              <td data-label="Result">크로스플랫폼 추론 지원 완성 및 Apache-2.0 오픈소스 공개</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Lessons Learned.</h2>
+      <div class="table-wrap">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th class="col-no">No.</th>
+              <th>내용</th>
+              <th class="col-mood">경험</th>
+              <th>배운 점</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-no" data-label="No.">01</td>
+              <td data-label="내용">범용 대형 모델 대신 제품 제약(원가·메모리·속도)에 맞춘 자체 온디바이스 ASR V1→V2 고도화</td>
+              <td class="col-mood" data-label="경험">😄</td>
+              <td class="text-left" data-label="배운 점">
+                모델 크기 경쟁보다 사전 설계(2K BPE), 데이터 분포 확장(구어체 230GB), 시스템 최적화(C++17 빔 서치·Metal 커널)의 결합이 실제 제품 체감 성능을 결정한다는 것을 실측 수치로 확인했습니다.
+                <span class="editorial-table__subnote">→ 앱 내 온디바이스 무제한 전사(원가 0원·환각 0%) 및 오픈소스 배포로 연결</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <nav class="page-nav" aria-label="세부 작업 이동">
+      <a class="page-nav__link" href="../branding/">← Prev: Branding</a>
+      <a class="page-nav__link" href="../">NoteSoop →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 이영찬</span>
+    <div class="site-footer__links">
+      <a class="site-footer__link" href="mailto:yclee0691@daum.net">yclee0691@daum.net</a>
+      <a class="site-footer__link" href="https://instagram.com/yc.builds" target="_blank" rel="noopener">@yc.builds</a>
+    </div>
+  </footer>
+</body>
+</html>

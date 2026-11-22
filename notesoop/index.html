@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoteSoop — Portfolio</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-bar__left">
+      <a class="top-bar__link" href="../">← Index</a>
+      <span class="top-bar__sep">/</span>
+      <span>2026.03</span>
+    </div>
+    <div class="top-bar__right">Project 01</div>
+  </header>
+
+  <main class="container">
+    <section class="project-hero">
+      <h1 class="project-hero__title">NoteSoop</h1>
+      <div class="project-hero__rule" aria-hidden="true"></div>
+      <p class="project-hero__desc">
+        학습의 비효율을 줄여 도구가 아닌 배움에 집중할 수 있도록 만든 대학생 중심 AI 학습 워크스페이스.
+        강의 PDF 필기와 녹음 동기화, 자체 개발 한국어 온디바이스 STT, AI 요약·퀴즈·모의고사·TTS 슬라이드 강의를 하나의 흐름으로 연결했습니다.
+      </p>
+      <div class="project-hero__meta" aria-label="참여 형태 및 역할">
+        <span class="scope-label">개인</span>
+        <span>기획 · 브랜딩 · 앱 개발 · 온디바이스 STT 전담</span>
+      </div>
+      <div class="link-bar" aria-label="관련 링크">
+        <a class="link-pill" href="https://apps.apple.com/kr/app/notesoop/id6760303593" target="_blank" rel="noopener">App Store ↗</a>
+        <a class="link-pill" href="https://play.google.com/store/apps/details?id=com.phsoft.notesoop&amp;pcampaignid=web_share" target="_blank" rel="noopener">Google Play ↗</a>
+        <a class="link-pill" href="https://www.youtube.com/watch?v=Xgw9VbKvmdc" target="_blank" rel="noopener">Brand Film ↗</a>
+        <a class="link-pill" href="https://huggingface.co/Phsoft-ai/Notesoop-STT-Ko-v2" target="_blank" rel="noopener">Hugging Face (STT v2) ↗</a>
+      </div>
+      <div class="hero-frame">
+        <span>대표 이미지</span>
+      </div>
+    </section>
+
+    <section class="section section--tight" aria-label="핵심 지표">
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <span class="stat-cell__value">iOS · Android</span>
+          <span class="stat-cell__label">정식 출시 및 운영 (v1.11.1)</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">42.2x</span>
+          <span class="stat-cell__label">41분 실전 강의 59.3초 온디바이스 전사</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">10.47%</span>
+          <span class="stat-cell__label">Zeroth-Korean CER (V1 대비 -5.41%p)</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__value">1.39GB</span>
+          <span class="stat-cell__label">실전 MPS VRAM (Whisper-large-v3 대비 1/4.5)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">Overview.</h2>
+      <div class="tech-split">
+        <div class="tech-visual">
+          <span>구조 이미지</span>
+        </div>
+        <div class="tech-info">
+          <div class="tech-meta">
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">기간 :</span>
+              <span class="tech-meta__val">2026.03 — 진행 중 (v1.11.1+50 운영)</span>
+            </div>
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">구성 :</span>
+              <span class="tech-meta__val">개인 프로젝트 (1인 전담)</span>
+            </div>
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">담당 역할 :</span>
+              <span class="tech-meta__val">제품 기획, 비즈니스·구독 설계, 브랜딩·디자인 시스템, 앱 개발, 온디바이스 STT 모델 개발 및 배포</span>
+            </div>
+            <div class="tech-meta__row">
+              <span class="tech-meta__label">주요 기술 :</span>
+              <span class="tech-meta__val">iOS / Android · Gemini API · PyTorch (MPS / CUDA) · Conformer-CTC · C++17 · KenLM</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="tech-block__title">목표</h3>
+            <ul class="tech-block__list">
+              <li>1) PDF 필기·녹음·전사·AI 복습으로 흩어진 대학생의 학습 도구를 단일 워크스페이스로 통합</li>
+              <li>2) 장시간 학습에도 눈이 피로하지 않은 저채도 브랜드 경험('숲')과 쉬운 UX 라이팅 구축</li>
+              <li>3) API 원가·프라이버시 한계를 해결하는 초경량·초고속 한국어 온디바이스 STT 모델 자체 개발 및 오픈소스 공개</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__heading">What I Did.</h2>
+      <div class="subtask-list">
+        <a class="subtask-row" href="./plan/">
+          <span class="subtask-row__num">01</span>
+          <span class="subtask-row__title">Plan</span>
+          <span class="subtask-row__desc">학기·주차 기반 정보 구조(IA), 필기·녹음·AI 학습 워크플로우, 클라우드 동기화 안전망 및 구독·원가 분석</span>
+          <span class="subtask-row__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a class="subtask-row" href="./branding/">
+          <span class="subtask-row__num">02</span>
+          <span class="subtask-row__title">Branding</span>
+          <span class="subtask-row__desc">미션·핵심 가치, Clear·Warm·Helpful UX 라이팅 가이드, 저채도 컬러·타이포 디자인 시스템 및 브랜드 필름</span>
+          <span class="subtask-row__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a class="subtask-row" href="./stt-model/">
+          <span class="subtask-row__num">03</span>
+          <span class="subtask-row__title">STT Model</span>
+          <span class="subtask-row__desc">EmbeddingGemma-2 + Conformer-CTC + C++17 빔 서치 기반 한국어 온디바이스 ASR(Notesoop-STT-Ko-v2) 개발</span>
+          <span class="subtask-row__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <nav class="page-nav" aria-label="프로젝트 이동">
+      <a class="page-nav__link" href="../">← 전체 목록으로</a>
+      <a class="page-nav__link" href="../3p-planner/">Next: 3P 플래너 →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 이영찬</span>
+    <div class="site-footer__links">
+      <a class="site-footer__link" href="mailto:yclee0691@daum.net">yclee0691@daum.net</a>
+      <a class="site-footer__link" href="https://instagram.com/yc.builds" target="_blank" rel="noopener">@yc.builds</a>
+    </div>
+  </footer>
+</body>
+</html>
