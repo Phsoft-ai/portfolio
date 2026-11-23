@@ -759,70 +759,50 @@ a.profile-meta__value:hover {
 }
 
 /* ==========================================================================
-   iPad Device Frame (CSS Bezel)
+   iPad Mockup Stage (Borderless + Natural Drop Shadow)
    ========================================================================== */
 .ipad-stage {
   width: 100%;
-  background-color: var(--surface);
-  border: 1px solid var(--line);
-  padding: 24px 28px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .ipad-stage--hero {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 28px 40px;
+  max-width: 720px;
+  margin: 12px auto 0;
 }
 
 .ipad-stage--compact {
-  padding: 18px 20px;
+  padding: 0;
 }
 
-.ipad-bezel {
-  width: 100%;
-  background-color: #161617;
-  padding: 10px;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  line-height: 0;
-}
-
-.ipad-stage--compact .ipad-bezel {
-  padding: 7px;
-  border-radius: 13px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
-}
-
-.ipad-bezel img {
+.ipad-stage img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 9px;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.14)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
 }
 
-.ipad-stage--compact .ipad-bezel img {
-  border-radius: 7px;
+.ipad-stage--compact img {
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.12)) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.07));
 }
 
 .project-row__thumb--ipad {
-  padding: 10px 14px;
+  border: none;
+  background-color: transparent;
+  overflow: visible;
+  padding: 0;
 }
 
-.project-row__thumb--ipad .ipad-bezel {
-  padding: 4px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.project-row__thumb--ipad .ipad-bezel img {
+.project-row__thumb--ipad img {
   width: 100%;
   height: auto;
   object-fit: initial;
-  border-radius: 4px;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
 .gallery-card__caption {
