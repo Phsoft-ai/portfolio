@@ -336,6 +336,19 @@ a.profile-meta__value:hover {
   object-fit: cover;
 }
 
+.project-row__thumb--borderless {
+  border: none;
+  background-color: transparent;
+  overflow: visible;
+}
+
+.project-row__thumb--borderless img {
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+  transform: scale(1.1);
+}
+
 .project-row__meta-col {
   display: flex;
   flex-direction: column;
