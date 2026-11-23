@@ -145,41 +145,54 @@ img {
   to { opacity: 1; }
 }
 
-@keyframes page-enter {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* Scroll Reveal (Progressive Enhancement via assets/js/motion.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
-.container > *,
-.site-footer {
-  animation: page-enter 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-.container > *:nth-child(2) {
-  animation-delay: 0.035s;
+.ipad-stage img,
+.gallery-card__frame--natural img {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.container > *:nth-child(3) {
-  animation-delay: 0.07s;
+.gallery-card:hover .ipad-stage img {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.16)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.09));
 }
 
-.container > *:nth-child(n + 4),
-.site-footer {
-  animation-delay: 0.105s;
+.gallery-card:hover .gallery-card__frame--natural img {
+  transform: translateY(-3px);
 }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root),
-  ::view-transition-new(root),
-  .container > *,
-  .site-footer {
+  ::view-transition-new(root) {
     animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .ipad-stage img,
+  .gallery-card__frame--natural img {
+    transition: none !important;
+    transform: none !important;
   }
 }
 
