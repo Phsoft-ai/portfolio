@@ -887,10 +887,10 @@ a.profile-meta__value:hover {
 
 .exp-item {
   display: grid;
-  grid-template-columns: 144px 1fr auto;
-  gap: 20px;
+  grid-template-columns: minmax(156px, max-content) 1fr auto;
+  gap: 24px;
   align-items: baseline;
-  padding: 24px 8px;
+  padding: 28px 8px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -900,6 +900,10 @@ a.profile-meta__value:hover {
   color: var(--ink-muted);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+.exp-item__body {
+  min-width: 0;
 }
 
 .exp-item__title {
@@ -914,6 +918,37 @@ a.profile-meta__value:hover {
   font-weight: 400;
   color: var(--ink-secondary);
   line-height: 1.65;
+}
+
+.exp-item__media {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.exp-item__thumb {
+  display: block;
+  width: min(100%, 280px);
+  aspect-ratio: 16 / 10;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.exp-item__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.exp-item__thumb--contain img {
+  object-fit: contain;
+}
+
+a.exp-item__thumb:hover img {
+  transform: scale(1.02);
 }
 
 .exp-item__tag {
@@ -1820,6 +1855,10 @@ a.profile-meta__value:hover {
   .exp-item {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+
+  .exp-item__thumb {
+    width: 100%;
   }
 
   /* Responsive Table -> Clean Stacked Rows */
