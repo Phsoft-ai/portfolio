@@ -554,6 +554,18 @@ a.profile-meta__value:hover {
   object-fit: cover;
 }
 
+.hero-frame--natural {
+  aspect-ratio: auto;
+  border: none;
+  background-color: transparent;
+}
+
+.hero-frame--natural img {
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+}
+
 /* ==========================================================================
    Sub-task Hub List (Project -> Sub-tasks)
    ========================================================================== */
@@ -713,7 +725,8 @@ a.profile-meta__value:hover {
 
 .gallery-card__frame--natural {
   aspect-ratio: auto;
-  background-color: var(--bg);
+  border: none;
+  background-color: transparent;
 }
 
 .gallery-card__frame--natural img {
