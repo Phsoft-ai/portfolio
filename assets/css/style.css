@@ -887,7 +887,7 @@ a.profile-meta__value:hover {
 
 .exp-item {
   display: grid;
-  grid-template-columns: 100px 1fr auto;
+  grid-template-columns: 144px 1fr auto;
   gap: 20px;
   align-items: baseline;
   padding: 24px 8px;
@@ -899,6 +899,7 @@ a.profile-meta__value:hover {
   font-weight: 500;
   color: var(--ink-muted);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .exp-item__title {
