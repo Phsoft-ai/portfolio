@@ -7,7 +7,7 @@
     return;
   }
 
-  const SINGLE_SELECTORS = [
+  const SELECTOR = [
     '.cover__title',
     '.cover__subtitle',
     '.profile-meta',
@@ -28,9 +28,6 @@
     '.video-frame',
     '.experiments-banner',
     '.page-nav',
-  ];
-
-  const GROUP_SELECTORS = [
     '.project-list > .project-row',
     '.subtask-list > .subtask-row',
     '.spec-grid > .spec-card',
@@ -39,90 +36,81 @@
     '.stat-strip > .stat-cell',
     '.flow-steps > .flow-step',
     '.swatch-grid > *',
-  ];
+  ].join(', ');
 
-  const targets = new Set();
+  // querySelectorAll returns elements in exact top-to-bottom DOM order
+  const rawNodes = Array.from(document.querySelectorAll(SELECTOR));
+  const targetSet = new Set(rawNodes);
 
-  // Add staggered group items first so parent containers stay clean
-  GROUP_SELECTORS.forEach((selector) => {
-    const items = document.querySelectorAll(selector);
-    const byParent = new Map();
-    items.forEach((el) => {
-      const parent = el.parentElement;
-      if (!byParent.has(parent)) byParent.set(parent, []);
-      byParent.get(parent).push(el);
-    });
-    byParent.forEach((group) => {
-      group.forEach((el, idx) => {
-        el.style.setProperty('--reveal-delay', `${Math.min(idx * 70, 350)}ms`);
-        targets.add(el);
-      });
-    });
+  // Exclude any element nested inside another reveal target
+  const targets = rawNodes.filter((el) => {
+    let parent = el.parentElement;
+    while (parent) {
+      if (targetSet.has(parent)) return false;
+      parent = parent.parentElement;
+    }
+    return true;
   });
 
-  // Add standalone editorial blocks
-  SINGLE_SELECTORS.forEach((selector) => {
-    document.querySelectorAll(selector).forEach((el) => {
-      // Avoid double-animating elements nested inside an already-targeted element
-      if (!el.closest('.reveal')) {
-        targets.add(el);
-      }
-    });
+  if (targets.length === 0) return;
+
+  const indexMap = new Map(targets.map((el, i) => [el, i]));
+
+  // Mark all targets hidden first
+  targets.forEach((el) => {
+    el.classList.add('reveal');
   });
 
-  // Apply gentle stagger for hero/cover elements on initial load
-  const heroGroup = document.querySelector('.cover, .project-hero, .subpage-header');
-  if (heroGroup) {
-    let heroIndex = 0;
-    heroGroup.querySelectorAll('*').forEach((el) => {
-      if (targets.has(el)) {
-        el.style.setProperty('--reveal-delay', `${Math.min(heroIndex * 55, 280)}ms`);
-        heroIndex += 1;
-      }
-    });
-  }
+  // Force synchronous reflow so Safari/Chrome commit the initial hidden state
+  void document.documentElement.offsetHeight;
 
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+      const entering = entries
+        .filter((e) => e.isIntersecting)
+        .map((e) => e.target)
+        .sort((a, b) => (indexMap.get(a) || 0) - (indexMap.get(b) || 0));
+
+      entering.forEach((el, batchIdx) => {
+        el.style.setProperty('--reveal-delay', `${Math.min(batchIdx * 75, 300)}ms`);
+        el.classList.add('is-visible');
+        observer.unobserve(el);
       });
     },
     {
-      threshold: 0.06,
-      rootMargin: '0px 0px -32px 0px',
+      threshold: 0.05,
+      rootMargin: '0px 0px -28px 0px',
     }
   );
 
-  const inViewNow = [];
   const vh = window.innerHeight || document.documentElement.clientHeight;
+  const aboveFold = [];
 
   targets.forEach((el) => {
-    el.classList.add('reveal');
     const rect = el.getBoundingClientRect();
-    if (rect.top < vh * 0.95) {
-      inViewNow.push(el);
+    if (rect.top < vh * 0.96) {
+      aboveFold.push(el);
     } else {
       observer.observe(el);
     }
   });
 
-  // Reveal above-the-fold elements on the next frame for a smooth entry
+  // Smooth top-to-bottom cascade for everything visible on initial screen
   requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      inViewNow.forEach((el) => el.classList.add('is-visible'));
+    aboveFold.forEach((el, idx) => {
+      el.style.setProperty('--reveal-delay', `${Math.min(idx * 65, 420)}ms`);
+      el.classList.add('is-visible');
     });
   });
 
-  // Clear will-change after transition finishes to keep compositing lightweight
+  // Clean up will-change and reveal delay once animation completes
   document.addEventListener(
     'transitionend',
     (e) => {
-      if (e.target && e.target.classList && e.target.classList.contains('is-visible')) {
-        e.target.style.willChange = 'auto';
+      const el = e.target;
+      if (el && el.classList && el.classList.contains('is-visible')) {
+        el.style.willChange = 'auto';
+        el.style.setProperty('--reveal-delay', '0ms');
       }
     },
     { passive: true }
