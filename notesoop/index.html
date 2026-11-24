@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NoteSoop — Portfolio</title>
-  <link rel="stylesheet" href="../assets/css/style.css?v=12" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=13" />
   <script src="../assets/js/motion.js?v=2" defer></script>
 </head>
 <body>
@@ -117,84 +117,42 @@
       <h2 class="section__heading">Features.</h2>
       <p class="section__lead">수업 전부터 시험 전까지, 한 학기의 공부가 앱 하나에서 이어집니다.</p>
 
-      <div class="flow-steps" aria-label="노트숲 학습 흐름">
-        <div class="flow-step">
-          <span class="flow-step__num">01</span>
-          <span class="flow-step__title">모으기</span>
-          <span class="flow-step__desc">과목 · 주차별 강의안 정리</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">02</span>
-          <span class="flow-step__title">필기 · 녹음</span>
-          <span class="flow-step__desc">PDF 위에 쓰면서 수업 녹음</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">03</span>
-          <span class="flow-step__title">받아쓰기</span>
-          <span class="flow-step__desc">1시간 강의를 1분 만에 글로</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">04</span>
-          <span class="flow-step__title">AI 정리</span>
-          <span class="flow-step__desc">핵심 요약 · 출제 포인트</span>
-        </div>
-        <div class="flow-step">
-          <span class="flow-step__num">05</span>
-          <span class="flow-step__title">복습</span>
-          <span class="flow-step__desc">퀴즈 · 모의고사 · AI 강의</span>
-        </div>
-      </div>
-
-      <div class="spec-grid">
-        <article class="spec-card">
-          <span class="spec-card__eyebrow">01 Library &amp; Sync</span>
-          <h3 class="spec-card__title">한 학기가 담기는 서재와 동기화</h3>
-          <p class="spec-card__body">학기 · 과목 · 주차별로 PDF · 필기 · 녹음을 정리하고, 패드와 휴대폰 어디서든 이어서 공부해요.</p>
-        </article>
-
-        <article class="spec-card">
-          <span class="spec-card__eyebrow">02 Note &amp; Audio</span>
-          <h3 class="spec-card__title">필기하면서 녹음, 다시 들으면 재현</h3>
-          <p class="spec-card__body">강의안 위에 필기하며 수업을 녹음하고, 나중에 재생하면 그때 쓰던 필기가 타이밍에 맞춰 다시 그려져요.</p>
-        </article>
-
-        <article class="spec-card">
-          <span class="spec-card__eyebrow">03 On-Device STT</span>
-          <h3 class="spec-card__title">1시간 강의도 1분 만에 글로</h3>
-          <p class="spec-card__body">직접 만든 받아쓰기 모델이 휴대폰 안에서 녹음을 글로 바꿔요. 인터넷 없이 무료 · 무제한으로 쓸 수 있어요.</p>
-        </article>
-
-        <article class="spec-card">
-          <span class="spec-card__eyebrow">04 AI Study</span>
-          <h3 class="spec-card__title">자료를 고르면 만들어지는 복습 거리</h3>
-          <p class="spec-card__body">필요한 자료만 고르면 핵심 요약, 복습 퀴즈, 기출을 반영한 모의고사 · 오답노트, AI 성우 슬라이드 강의까지 한 번에 만들어 드려요.</p>
-        </article>
-      </div>
-
       <div class="gallery-grid gallery-grid--2">
         <figure class="gallery-card">
           <div class="ipad-stage ipad-stage--compact">
             <img src="./images/ipad-note.png" alt="PDF 필기 및 수업 녹음 화면" loading="lazy" />
           </div>
-          <figcaption class="gallery-card__caption">PDF 필기 · 수업 녹음</figcaption>
+          <figcaption class="gallery-card__meta">
+            <span class="gallery-card__title">PDF 필기 · 수업 녹음</span>
+            <span class="gallery-card__desc">강의안 위에 필기하며 녹음하고, 온디바이스 STT로 1시간 강의를 1분 만에 텍스트화</span>
+          </figcaption>
         </figure>
         <figure class="gallery-card">
           <div class="ipad-stage ipad-stage--compact">
             <img src="./images/ipad-summary.png" alt="AI 핵심 요약 노트 및 가림 모드 화면" loading="lazy" />
           </div>
-          <figcaption class="gallery-card__caption">AI 핵심 요약 · 가림 모드</figcaption>
+          <figcaption class="gallery-card__meta">
+            <span class="gallery-card__title">AI 핵심 요약 · 가림 모드</span>
+            <span class="gallery-card__desc">강의 자료와 녹음을 핵심만 정리하고, 가림 모드로 바로 암기 복습</span>
+          </figcaption>
         </figure>
         <figure class="gallery-card">
           <div class="ipad-stage ipad-stage--compact">
             <img src="./images/ipad-lecture.png" alt="AI 슬라이드 강의 및 음성 재생 화면" loading="lazy" />
           </div>
-          <figcaption class="gallery-card__caption">AI 슬라이드 강의</figcaption>
+          <figcaption class="gallery-card__meta">
+            <span class="gallery-card__title">AI 슬라이드 강의</span>
+            <span class="gallery-card__desc">자료를 바탕으로 슬라이드와 AI 성우 음성 강의를 자동 생성</span>
+          </figcaption>
         </figure>
         <figure class="gallery-card">
           <div class="ipad-stage ipad-stage--compact">
             <img src="./images/ipad-quiz.png" alt="AI 모의고사 및 복습 퀴즈 풀이 화면" loading="lazy" />
           </div>
-          <figcaption class="gallery-card__caption">AI 모의고사 · 복습 퀴즈</figcaption>
+          <figcaption class="gallery-card__meta">
+            <span class="gallery-card__title">AI 모의고사 · 복습 퀴즈</span>
+            <span class="gallery-card__desc">기출 경향을 반영한 실전 문제 풀이와 오답 정리</span>
+          </figcaption>
         </figure>
       </div>
     </section>

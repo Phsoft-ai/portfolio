@@ -785,6 +785,27 @@ a.profile-meta__value:hover {
   text-align: center;
 }
 
+.gallery-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 2px 0;
+}
+
+.gallery-card__title {
+  font-size: 0.96875rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+}
+
+.gallery-card__desc {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--ink-secondary);
+  line-height: 1.55;
+}
+
 /* ==========================================================================
    Technical 2-Column Split
    ========================================================================== */
