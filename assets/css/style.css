@@ -542,6 +542,10 @@ a.profile-meta__value:hover {
   background-color: transparent;
 }
 
+.hero-frame--wide {
+  max-width: 880px;
+}
+
 .hero-frame--natural img {
   width: 100%;
   height: auto;
